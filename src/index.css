@@ -16,7 +16,7 @@ html {
 }
 @media (max-width: 500px) {
   html {
-    width: 1000px;
+    width: max-content;
   }
 }
 body {
