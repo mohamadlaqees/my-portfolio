@@ -140,7 +140,12 @@ function SectionOne() {
       <div ref={ref} className=" md:flex md:justify-between" id="home">
         <motion.div className="welcome-container" animate={animation}>
           <span className="welcome">Welcome to my portfolio</span>
-       
+          <div className=" mt-10 mb-10 text-5xl text-white font-bold tracking-wide w-full">
+            Hi! i'm mohammad laqees <span className="text">{text}</span>
+            <span className="text-cursor">
+              <Cursor cursorBlinking={false} cursorStyle="|" />
+            </span>
+          </div>
           <div className="text-text mt-10 text-lg font-bold w-text tracking-wide">
             This is my personal portfolio that contain all my skills , projects
             , training templates and contact informations
