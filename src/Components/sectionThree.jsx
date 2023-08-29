@@ -70,7 +70,7 @@ function SectionThree() {
         className={` ${
           tShow
             ? "mt-4 grid grid-flow-row justify-center  xl:grid xl:grid-cols-3   gap-14 pt-16 pb-16 pl-20 pr-20 transition-all duration-700 "
-            : " -translate-x-full h-0 hidden"
+            : " -translate-x-full h-0"
         }`}
       >
         <Projects data={templates} clas="projects-overlay" />
@@ -79,7 +79,7 @@ function SectionThree() {
         className={`${
           rShow
             ? " mt-4 grid grid-flow-row  justify-center xl:grid xl:grid-cols-2 xl:ml-52  gap-14  pt-16 pb-16  transition-all duration-700 "
-            : " translate-x-full h-0 hidden"
+            : " -translate-x-full h-0 "
         }`}
       >
         <Projects data={projects} clas="projects-overlay2" />
