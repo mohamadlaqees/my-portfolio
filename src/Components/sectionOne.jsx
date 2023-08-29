@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import headerImg from "../img/header-img.svg";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import {  motion } from "framer-motion";
+import { useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 function SectionOne() {
   const [text] = useTypewriter({
@@ -13,8 +16,26 @@ function SectionOne() {
 
   const [show, setShow] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+  const animation = useAnimation();
 
   useEffect(() => {
+    if (inView) {
+      animation.start({
+        x: 0,
+        transition: {
+          type: "spring",
+          duration: 1,
+          bounce: 0.3,
+        },
+      });
+    } else {
+      animation.start({
+        x: "-100vw",
+      });
+    }
     const onScroll = () => {
       if (window.scrollY > 50) {
         setScrolled(true);
@@ -22,11 +43,9 @@ function SectionOne() {
         setScrolled(false);
       }
     };
-
     window.addEventListener("scroll", onScroll);
-
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [inView]);
 
   return (
     <div className="secOne">
@@ -110,7 +129,7 @@ function SectionOne() {
             </div>
 
             <div className=" menu  text-center">
-              <div className="p-2 w-40 " >
+              <div className="p-2 w-40 ">
                 <a href="#contact">Contact me</a>
               </div>
             </div>
@@ -118,23 +137,18 @@ function SectionOne() {
         </div>
       </div>
 
-      <div className=" md:flex md:justify-between" id="home">
-        <div className="welcome-container">
+      <div ref={ref} className=" md:flex md:justify-between" id="home">
+        <motion.div className="welcome-container" animate={animation}>
           <span className="welcome">Welcome to my portfolio</span>
-          <div className=" mt-10 mb-10 text-5xl text-white font-bold tracking-wide w-phrase">
-            Hi! i'm mohammad laqees <span className="text">{text}</span>
-            <span className="text-cursor">
-              <Cursor cursorBlinking={false} cursorStyle="|" />
-            </span>
-          </div>
+       
           <div className="text-text mt-10 text-lg font-bold w-text tracking-wide">
             This is my personal portfolio that contain all my skills , projects
             , training templates and contact informations
           </div>
-        </div>
-        <div className="mt-80 md:mt-40">
+        </motion.div>
+        <motion.div className="mt-80 md:mt-40" animate={animation}>
           <img src={headerImg} alt="" />
-        </div>
+        </motion.div>
       </div>
     </div>
   );
